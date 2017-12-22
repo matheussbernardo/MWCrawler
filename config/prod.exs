@@ -7,4 +7,4 @@ port =
     nil -> 80 # default port
   end
 
-config :hello_webhook, port: port
+config :softiparse, port: port

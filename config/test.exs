@@ -1,3 +1,3 @@
 use Mix.Config
 
-config :hello_webhook, port: 4001
+config :softiparse, port: 4001
