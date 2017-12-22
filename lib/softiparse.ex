@@ -4,7 +4,8 @@ defmodule Parser do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(Parser.Endpoint, [])
+      worker(Parser.Endpoint, []),
+      worker(Parser.Worker, [])
     ]
 
     opts = [strategy: :one_for_one, name: HexVersion.Supervisor]

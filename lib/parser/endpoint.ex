@@ -1,5 +1,6 @@
 defmodule Parser.Endpoint do
   use Plug.Router
+
   require Logger
 
   plug Plug.Logger
@@ -18,41 +19,7 @@ defmodule Parser.Endpoint do
   end
 
   get "/cursos_com_prerequisitos" do
-    send_resp(conn |> put_resp_content_type("text/plain"), 200, courses_and_dependencies())
-  end
-
-  defp list_of_courses do
-    url = "https://matriculaweb.unb.br/graduacao/curriculo.aspx?cod=6360"
-    body = HTTPoison.get!(url).body
-
-    raw_list_of_courses = body 
-                          |> Floki.find("div.body.table-responsive table a") 
-                          |> Floki.text(sep: "-") 
-                          |> String.split("-")
-    Enum.map(raw_list_of_courses, fn(course) -> String.trim_trailing(course) end)
-
-  end
-
-  defp links_of_courses do
-    url = "https://matriculaweb.unb.br/graduacao/curriculo.aspx?cod=6360"
-    body = HTTPoison.get!(url).body
-    body |> Floki.find("div.body.table-responsive table a") |> Floki.attribute("href") 
-  end
-  
-  defp get_dependency(url) do
-    body = HTTPoison.get!("https://matriculaweb.unb.br/#{url}").body
-    body |> Floki.find("#datatable tr:nth-child(6) a") |> Floki.text
-  end
-  
-  defp dependencies_links do
-    Task.async_stream(links_of_courses(), fn(link) -> get_dependency(link) end)
-  end
-
-  defp courses_and_dependencies do
-    stream = dependencies_links()
-    links = Enum.map(stream, fn({:ok, content}) -> content end )
-    courses = Enum.zip(list_of_courses(), links) |> Enum.into(%{})
-    Poison.encode!(courses)
+    send_resp(conn |> put_resp_content_type("text/plain"), 200, Parser.Worker.lookup(:worker))
   end
 
 end
