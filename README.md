@@ -1,21 +1,13 @@
-# Parser
+# MWCrawler
 
-**TODO: Add description**
+Crawler do [Matricula Web - UnB](https://matriculaweb.unb.br/). 
 
-## Installation
+Esse crawler expõe um endpoint GET `/course/:code`
+onde o parametro `code` é o código do curso. Com esse código o crawler captura algumas informações como o currículo do curso desejado e os créditos necessários para formar.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `softiparse` to your list of dependencies in `mix.exs`:
+Para usar esse sistema é necessário instalar elixir e então executar os comandos:
 
-```elixir
-def deps do
-  [
-    {:softiparse, "~> 0.1.0"}
-  ]
-end
-```
+- `mix deps.get`
+- `iex -S mix`
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/softiparse](https://hexdocs.pm/softiparse).
-
+Depois é só acessar o endpoint em `localhost:4000/`
