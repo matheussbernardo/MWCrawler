@@ -1,3 +1,3 @@
 use Mix.Config
 
-config :softiparse, port: 4000
+config :mwparser, port: 4000
