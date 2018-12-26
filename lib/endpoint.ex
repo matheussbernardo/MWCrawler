@@ -1,4 +1,4 @@
-defmodule MWParser.Endpoint do
+defmodule MWCrawler.Endpoint do
   use Plug.Router
 
   require Logger
@@ -13,7 +13,7 @@ defmodule MWParser.Endpoint do
   end
 
   def start_link do
-    port = Application.fetch_env!(:mwparser, :port)
+    port = Application.fetch_env!(:mwcrawler, :port)
     {:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [], port: port)
   end
 
@@ -21,7 +21,7 @@ defmodule MWParser.Endpoint do
     send_resp(
       conn |> put_resp_content_type("application/json"),
       200,
-      MWParser.Crawler.course(code)
+      MWCrawler.Crawler.course(code)
     )
   end
 

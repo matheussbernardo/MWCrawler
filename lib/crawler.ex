@@ -1,4 +1,4 @@
-defmodule MWParser.Crawler do
+defmodule MWCrawler.Crawler do
   def course(code) do
     curriculum_body = get_curriculum_body(code)
     course_name = get_course_name(curriculum_body)

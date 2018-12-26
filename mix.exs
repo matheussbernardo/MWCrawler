@@ -1,9 +1,9 @@
-defmodule MWParser.Mixfile do
+defmodule MWCrawler.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :mwparser,
+      app: :mwcrawler,
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +15,7 @@ defmodule MWParser.Mixfile do
   def application do
     [
       extra_applications: [:logger],
-      mod: {MWParser, []}
+      mod: {MWCrawler, []}
     ]
   end
 

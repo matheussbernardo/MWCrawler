@@ -1,11 +1,11 @@
-defmodule MWParser do
+defmodule MWCrawler do
   use Application
 
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(MWParser.Endpoint, [])
+      worker(MWCrawler.Endpoint, [])
     ]
 
     opts = [strategy: :one_for_one, name: HexVersion.Supervisor]

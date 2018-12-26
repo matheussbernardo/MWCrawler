@@ -8,4 +8,4 @@ port =
     nil -> 80
   end
 
-config :mwparser, port: port
+config :mwcrawler, port: port

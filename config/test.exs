@@ -1,3 +1,3 @@
 use Mix.Config
 
-config :mwparser, port: 4001
+config :mwcrawler, port: 4001
